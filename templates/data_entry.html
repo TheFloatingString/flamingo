@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container-fluid">
+	<form id="stress_form">
+		<p>Start <input type="text" name="start" id="start"></p>
+		<p>End <input type="text" name="end" id="end"></p>
+		<p>Stress level <input type="int" name="stress_level" id="stress_level"></p>
+        <input type="submit" value="submit" />	
+    </form>
+</div>
+
+<script type="text/javascript">
+
+	$('#stress_form').submit(function(e) {
+	                    e.preventDefault();
+
+	                    var data = {};
+	                    var Form = this;
+
+	                    $.each(this.elements, function(i, v) {
+	                        var input = $(v);
+	                        data[input.attr("name")] = input.val();
+	                        delete data["undefined"];
+	                    });
+
+	                    $.ajax({
+	                        type: 'POST',
+	                        url: '/api/add_stress_entry',
+	                        dataType: 'json',
+	                        contentType: 'application/json; charset=utf-8',
+	                        data: JSON.stringify(data),
+	                        context: Form,
+	                        success: function(callback) {
+	                            console.log(callback);
+	                            // Watch out for Cross Site Scripting security issues when setting dynamic content!
+	                            $(this).text('Hello ' + callback.start + ' ' + callback.end  + '!');
+	                        },
+	                        error: function() {
+	                            $(this).html("error!");
+	                        }
+	                    });
+	                });
+
+</script>
+
+{% endblock %}

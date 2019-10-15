@@ -35,7 +35,7 @@
 	                        success: function(callback) {
 	                            console.log(callback);
 	                            // Watch out for Cross Site Scripting security issues when setting dynamic content!
-	                            $(this).text('Hello ' + callback.start + ' ' + callback.end  + '!');
+	                            $(this).text('Success!');
 	                        },
 	                        error: function() {
 	                            $(this).html("error!");

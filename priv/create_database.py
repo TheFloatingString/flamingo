@@ -27,10 +27,10 @@ class StressEntry(Base):
 	user_id = Column(Integer)
 	datetime_start = Column(String)
 	datetime_end = Column(String)
-	stres_level = Column(Integer)
+	stress_level = Column(Integer)
 
 	def __repr__(self):
-		return "<StressEntry(user_id='%s', datetime_start='%s', datetime_end='%s', stres_level='%s')>" \
+		return "<StressEntry(user_id='%s', datetime_start='%s', datetime_end='%s', stress_level='%s')>" \
 		% (self.user_id, self.datetime_start, self.datetime_end, self.stres_level)
 
 if __name__ == '__main__':

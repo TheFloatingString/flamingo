@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+
+	<canvas id="myChart">
+	</canvas>
+
+	<script>
+		var ctx = document.getElementById("myChart");
+		var scatterChart = new Chart(ctx, {
+		    type: 'scatter',
+		    data: {
+		        datasets: [{
+		            label: 'Scatter Dataset',
+		            data: {{data|safe}},
+		            pointBackgroundColor: {{pointBackgroundColor|safe}}
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            xAxes: [{
+		                type: 'linear',
+		                position: 'bottom'
+		            }]
+		        }
+		    }
+		});
+	</script>
+
+</div>
+
+{% endblock %}
